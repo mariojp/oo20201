@@ -1,21 +1,21 @@
 package br.ucsal.banco.modelo;
 
-public class Conta {
+public abstract class Conta {
 
 	private String numero;
 	private String agencia;
 	private String nome;
-	private Double saldo;
-	private Double limite;
+//	private Double saldo;
+	protected Double saldo;
 
 	public Conta(String numero, String agencia, String nome, Double saldo) {
 		this.numero = numero + "-X";
 		this.agencia = agencia;
 		this.nome = nome;
 		this.saldo = saldo;
-		this.limite = saldo * 2;
 	}
 
+	
 	public Conta(String numero, String agencia, String nome) {
 		this(numero, agencia, nome, 0d);
 //		this.numero = numero+"-X";
@@ -24,14 +24,11 @@ public class Conta {
 //		this.saldo = 0d;
 	}
 
-	public Boolean saque(double valor) {
-		Boolean feito = false;
-		if (this.saldo+this.limite >= valor) {
-			this.saldo = this.saldo - valor;
-			feito = true;
-		} 
-		return feito;
-	}
+//	public Conta() {
+//		// TODO Auto-generated constructor stub
+//	}
+
+	public abstract Boolean saque(double valor);
 
 	public void deposito(double valor) {
 		this.saldo = this.saldo + valor;
@@ -46,7 +43,7 @@ public class Conta {
 	}
 	
 	public Double saldo() {
-		return this.saldo+this.limite;
+		return this.saldo;
 	}
 
 	public Double getSaldo() {
@@ -67,14 +64,6 @@ public class Conta {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Double getLimite() {
-		return limite;
-	}
-
-	public void setLimite(Double limite) {
-		this.limite = limite;
 	}
 
 	public String getNumero() {
