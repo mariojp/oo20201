@@ -2,14 +2,15 @@ package br.ucsal.banco;
 
 import br.ucsal.banco.modelo.Conta;
 import br.ucsal.banco.modelo.ContaCorrente;
+import br.ucsal.banco.modelo.ContaInvestimento;
 import br.ucsal.banco.modelo.ContaPoupanca;
 
 public class Principal {
 
 	public static void main(String[] args) {
+				
 		
-		
-		Conta[] contas = new Conta[3];
+		Conta[] contas = new Conta[4];
 		
 		
 		ContaCorrente c1 = new ContaCorrente("007","2222","Pedro");
@@ -30,10 +31,18 @@ public class Principal {
 		ContaPoupanca cp3 = new ContaPoupanca("0012", "5555", "Caio");
 		cp3.deposito(3000.0);
 		
+		
+		ContaInvestimento ci4 = new ContaInvestimento("0088", "5555", "Jade");
+		ci4.deposito(15.60);
+		System.out.println(ci4.getSaldo());
+		ci4.saque(5.00);
+
+		
 		contas[0] = c1;
 		contas[1] = c2;
 		contas[2] = cp3;
-				
+		contas[3] = ci4;
+
 		System.out.println(c1.saldo());
 		System.out.println(c2.saldo());
 		
@@ -75,8 +84,10 @@ public class Principal {
 				cp.redimento();
 				//((ContaPoupanca) conta).redimento();
 			}
-			System.out.println("Saldo:"+ conta.getSaldo() );
+			System.out.println("Saldo:"+ conta.saldo() );
 		}
+		
+		
 		
 
 	}
