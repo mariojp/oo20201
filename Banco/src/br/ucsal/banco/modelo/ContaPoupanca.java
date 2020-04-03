@@ -33,5 +33,10 @@ public class ContaPoupanca extends Conta {
 		}
 		return feito;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString() +"[ taxa ="+taxa+" ]";
+	}
 
 }

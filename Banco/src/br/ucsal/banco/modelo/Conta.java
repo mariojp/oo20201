@@ -1,6 +1,6 @@
 package br.ucsal.banco.modelo;
 
-public abstract class Conta {
+public abstract class Conta implements Comparable<Conta>{
 
 	private String numero;
 	private String agencia;
@@ -69,6 +69,30 @@ public abstract class Conta {
 	public String getNumero() {
 		return numero;
 	}
+	
+	@Override
+	public int hashCode() {
+		return this.nome.hashCode();
+	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		Conta o = (Conta) obj;
+		return this.nome.equals(o.getNome());
+	}
+	
+	@Override
+	public int compareTo(Conta o) {
+		return this.nome.compareTo(o.getNome());
+	}
+
+
+	@Override
+	public String toString() {
+		return "Conta nome=" + nome + ",numero=" + numero + ", agencia=" + agencia + ",  saldo=" + saldo ;
+	}
+	
 	
 	
 

@@ -1,5 +1,11 @@
 package br.ucsal.banco;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
 import br.ucsal.banco.modelo.Conta;
 import br.ucsal.banco.modelo.ContaCorrente;
 import br.ucsal.banco.modelo.ContaInvestimento;
@@ -10,15 +16,21 @@ public class Principal {
 	public static void main(String[] args) {
 				
 		
-		Conta[] contas = new Conta[4];
-		
-		
+		//List<Conta> contas = new ArrayList<Conta>();
+		Set<Conta> contas = new HashSet<Conta>();
+		//Map<String, Conta> contas = new HashMap<String, Conta>();
 		ContaCorrente c1 = new ContaCorrente("007","2222","Pedro");
+		ContaCorrente c1c = new ContaCorrente("007","2222","Pedro");
+		
+		System.out.println("Iguais "+c1.equals(c1c));
+
 //		Conta c1 = new Conta("007","2222","Pedro",0d);
 //		c1.nome = "Pedro";
 //		c1.agencia = "007";
 //		c1.numero = "2222";
 //		c1.saldo = 0d;// ponto flutuante / double - d
+		
+
 		
 		Conta c2 = new ContaCorrente("004","4646","Maria",2000d);
 		c2.deposito(1000d);
@@ -38,10 +50,34 @@ public class Principal {
 		ci4.saque(5.00);
 
 		
-		contas[0] = c1;
-		contas[1] = c2;
-		contas[2] = cp3;
-		contas[3] = ci4;
+//		contas.put(c1.getNome() , c1); //0
+//		contas.put(c1.getNome(),c1); //1
+//		contas.put(c2.getNome(),c2); //2
+//		contas.put(cp3.getNome(),cp3); //3
+//		contas.put(cp3.getNome(),cp3); //4
+//		contas.put(ci4.getNome(),ci4); //5
+		
+		contas.add(c1); //0
+		contas.add(c1); //1
+		contas.add(c1c);
+		contas.add(c2); //2
+		contas.add(cp3); //3
+		contas.add(cp3); //4
+		contas.add(ci4); //5
+		
+		//Indice apenas para lista 
+		//Conta removida = contas.remove(1);
+		//System.out.println("Removida "+ removida.getNome());
+		//Conta obter = contas.get(3);
+		//System.out.println("Obter "+ obter.getNome());
+
+		//contas.remove(c1);
+		
+		//Boolean achou =  contas.containsValue(c1);
+		// Integer indice = contas.indexOf(ci4);
+		//System.out.println("Esta na lista = "+achou );
+		
+		// Lista tem tamanho =  6 
 
 		System.out.println(c1.saldo());
 		System.out.println(c2.saldo());
@@ -73,18 +109,20 @@ public class Principal {
 		System.out.println("Saldo:"+ cp3.getSaldo() );
 		
 		System.out.println("---- -- ------- ---- -- - - - -- - - ");
+				
+//		for (int i = 0; i < contas.size(); i++) {
 		
+//		Iterator<Conta> iterator = contas.iterator();
+//		while(iterator.hasNext()) {
+//		Conta conta = iterator.next();
+		contas.size();
 		for (Conta conta : contas) {
-			System.out.println(conta.getNome());
-			System.out.println(conta.getNumero());
-			System.out.println(conta.getAgencia());
-			conta.saque(10d);
 			if(conta instanceof ContaPoupanca ) {
 				ContaPoupanca cp = (ContaPoupanca) conta;
-				cp.redimento();
+				//cp.redimento();
 				//((ContaPoupanca) conta).redimento();
 			}
-			System.out.println("Saldo:"+ conta.saldo() );
+			System.out.println(conta);
 		}
 		
 		
